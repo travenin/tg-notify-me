@@ -27,9 +27,9 @@ resource "aws_lambda_function" "notify_me" {
   role          = aws_iam_role.notify_me.arn
   runtime       = "python3.8"
 
-  handler          = "src/handler.handler"
-  filename         = "../build/lambda.zip"
-  source_code_hash = filebase64sha256("../build/lambda.zip")
+  handler          = "handler.handler"
+  filename         = "../dist/lambda.zip"
+  source_code_hash = filebase64sha256("../dist/lambda.zip")
 }
 
 resource "aws_lambda_permission" "lambda_permission" {

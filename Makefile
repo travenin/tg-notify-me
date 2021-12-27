@@ -1,11 +1,18 @@
+DIST := dist
+
 default: build
 
 clean:
-		rm -rf build
-		mkdir build
+		@find . -name '*.py?' -delete
+		@find . -name '.cache' -type d | xargs rm -rf
+		@find . -name '.pytest_cache' -type d | xargs rm -rf
+		@find . -name '__pycache__' -type d | xargs rm -rf
+		@find . -name 'test-results' -type d | xargs rm -rf
+		rm -rf $(DIST)
+		mkdir $(DIST)
 
 build: clean
-	    zip build/lambda.zip src/*
+	    cd src && zip ../$(DIST)/lambda.zip ./*
 
 deploy: build
 		terraform -chdir=./infra apply

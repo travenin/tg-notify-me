@@ -1,4 +1,4 @@
 infra/.terraform/
 infra/bucket.backend
 
-build/
+dist/
