@@ -14,5 +14,8 @@ clean:
 build: clean
 	    cd src && zip ../$(DIST)/lambda.zip ./*
 
+init:
+		terraform -chdir=./infra init -backend-config=bucket.backend
+
 deploy: build
 		terraform -chdir=./infra apply
